@@ -27,12 +27,13 @@ def Map(k):
     #read image
     img = Image.open('/home/wjdrmf314/MR-SLIC_NEW/resource/' + k +'.jpg')
     image = img_as_float(img)
-    
+    '''
     segments = slic(image, n_segments = numSegments, sigma = 5)
-    
+    '''
     finish_time = time.time()
     print(finish_time-start_time)
-    return finish_time-start_time
+    
+    return finish_time-start_time,k
     
 time = sc.parallelize(k,partition).map(Map).collect()
 
