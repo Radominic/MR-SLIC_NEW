@@ -1,11 +1,14 @@
 # USAGE
 # MR-SLIC_original
 from pyspark.context import SparkContext
-from skimage.segmentation import slic
 from skimage.segmentation import mark_boundaries
-from skimage.util import img_as_float
 from skimage import io
+
+import time
+from skimage.segmentation import slic
 from PIL import Image
+from skimage.util import img_as_float
+
 sc = SparkContext()
 
 #number of partition
@@ -22,7 +25,6 @@ numSegments = 500
 
 def Map(k):
     #time check
-    import time
     start_time = time.time()
     #read image
     img = Image.open('/home/wjdrmf314/MR-SLIC_NEW/resource/' + k +'.jpg')

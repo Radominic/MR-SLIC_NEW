@@ -37,4 +37,9 @@ def Map(k):
     
 time = sc.parallelize(k,partition).map(Map).collect()
 
+#로컬 실행 테스트
+img = Image.open('/home/wjdrmf314/MR-SLIC_NEW/resource/' + 'house' +'.jpg')
+image = img_as_float(img)
+segments = slic(image, n_segments = numSegments, sigma = 5)
+
 print(time)
