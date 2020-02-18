@@ -35,7 +35,8 @@ def Map(k):
     finish_time = time.time()
     print(finish_time-start_time)
     return finish_time-start_time
-    
-time = sc.parallelize(k,partition).map(Map).collect()
-
-print(time)
+stime = time.time()
+ttime = sc.parallelize(k,partition).map(Map).collect()
+ftime = time.time()
+print(ttime)
+print(ftime-stime)
