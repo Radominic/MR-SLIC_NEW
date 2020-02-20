@@ -23,11 +23,14 @@ k=['house1','house2','house3','house4']
 numSegments = 500
 
 
+
+
 def Map(k):
     #time check
     start_time = time.time()
-    #read image
-    img = Image.open('/home/wjdrmf314/MR-SLIC_NEW/resource/' + k +'.jpg')
+    #read imagez
+    img = Image.open('gs://dataproc-c0ca77ba-126c-45b8-a839-82019a5cdd13-asia-east1/resource/' + k +'.jpg')
+    
     image = img_as_float(img)
     
     segments = slic(image, n_segments = numSegments, sigma = 5)
