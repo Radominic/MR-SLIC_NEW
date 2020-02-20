@@ -18,7 +18,6 @@ partition = 4
 k=['house1','house2','house3','house4']
 
 
-
 # loop over the number of segments
 numSegments = 500
 
@@ -28,8 +27,11 @@ numSegments = 500
 def Map(k):
     #time check
     start_time = time.time()
+    
+    
     #read imagez
-    img = Image.open('gs://dataproc-c0ca77ba-126c-45b8-a839-82019a5cdd13-asia-east1/resource/' + k +'.jpg')
+    #submit image with job 
+    img = Image.open( k +'.jpg')
     
     image = img_as_float(img)
     
