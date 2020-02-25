@@ -41,11 +41,11 @@ def Map(k):
     
     
     finish_time = time.time()
-    return start_time, finish_time
+    return segments, distances, start_time, finish_time
 
 #times, segments, distances 를 리턴받는다.
 stime = time.time()
-times = sc.parallelize(k,partition).map(Map).collect()
+datas = sc.parallelize(k,partition).map(Map).collect()
 ftime = time.time()
 
 #cython 파일을 실행한다.
@@ -67,12 +67,12 @@ number = 0
 node = 1
 datat = pd.DataFrame(columns=['node','time'])
 pd.options.display.float_format = '{:.6f}'.format
-for i in times:
-    datat.loc[number]=['node '+str(node),i[1]-i[0]]
+for i in datas:
+    datat.loc[number]=['node '+str(node),i[3]-i[2]]
     
-    data.loc[number]=['node '+str(node)+' start',i[0]]
+    data.loc[number]=['node '+str(node)+' start',i[2]]
     number += 1
-    data.loc[number]=['node '+str(node)+' finish',i[1]]
+    data.loc[number]=['node '+str(node)+' finish',i[3]]
     number += 1
     node+=1
 
