@@ -38,10 +38,43 @@ def Map(k):
     segments = slic(image, n_segments = numSegments, sigma = 5)
     
     finish_time = time.time()
-    print(finish_time-start_time)
-    return finish_time-start_time
+    return start_time, finish_time
 stime = time.time()
-ttime = sc.parallelize(k,partition).map(Map).collect()
+times = sc.parallelize(k,partition).map(Map).collect()
 ftime = time.time()
-print(ttime)
-print(ftime-stime)
+
+
+import pandas as pd
+data = pd.DataFrame(columns=['node','time'])
+number = 0
+node = 1
+datat = pd.DataFrame(columns=['node','time'])
+pd.options.display.float_format = '{:.6f}'.format
+for i in times:
+    datat.loc[number]=['node '+str(node),i[1]-i[0]]
+    
+    data.loc[number]=['node '+str(node)+' start',i[0]]
+    number += 1
+    data.loc[number]=['node '+str(node)+' finish',i[1]]
+    number += 1
+    node+=1
+
+#network time
+for i in [0,2,4,6]:
+    print('network_ in_time : '+str(data['time'][i]-stime))
+for i in [1,3,5,7]:
+    print('network_ out_time : '+str(ftime-data['time'][i]))
+    
+    
+data = data.sort_values(by=['time'], axis=0)
+
+#slave time
+print('slave node time')
+print(data)
+
+print(datat)
+
+#whole time
+print('whole_time : '+str(ftime-stime))
+
+
