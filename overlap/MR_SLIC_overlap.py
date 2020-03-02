@@ -9,9 +9,9 @@ from scipy import ndimage as ndi
 from skimage.segmentation import slic
 from PIL import Image
 from skimage.util import img_as_float
-from ..segmentation._slic import _slic_cythonM
+from skimage.segmentation._slic_master import _slic_cythonM
 import numpy as np
-from ..color import rgb2lab
+from skimage.color import rgb2lab
 sc = SparkContext()
 
 #number of partition
