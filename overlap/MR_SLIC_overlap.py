@@ -11,9 +11,6 @@ from PIL import Image
 from skimage.util import img_as_float
 import numpy as np
 
-
-#import sys
-#sys.path.append('/home/gangmin/anaconda3/lib/python3.6/site-packages/skimage')
 from skimage.segmentation._slic_master import _slic_cythonM
 from skimage.segmentation._slic import _enforce_label_connectivity_cython
 from skimage.color import rgb2lab
@@ -21,7 +18,7 @@ from skimage.color import rgb2lab
 
 
 
-#sc = SparkContext()
+sc = SparkContext()
 
 #number of partition
 partition = 3
@@ -49,7 +46,8 @@ def Map(k):
     
     #read imagez
     #submit image with job 
-    img = Image.open('/home/gangmin/MR-SLIC_NEW/resource/'+ k +'.jpg')
+    #img = Image.open('/home/gangmin/MR-SLIC_NEW/resource/'+ k +'.jpg')
+    img = Image.open(k +'.jpg')
     
     image = img_as_float(img)
     #슬레이브 노드로 작업 분배
