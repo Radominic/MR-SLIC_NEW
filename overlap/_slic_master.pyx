@@ -25,7 +25,6 @@ def _slic_cythonM(list distancep, list nearest_segmentsp, Py_ssize_t[::1] index,
     cdef Py_ssize_t n_node = index.shape[0]
    
     #인덱스 생성 
-    cdef Py_ssize_t 
     cdef Py_ssize_t[::1] startpixel = np.empty(3, dtype=np.intp) 
     
     for i in range(n_node):
