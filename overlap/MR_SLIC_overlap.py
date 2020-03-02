@@ -18,15 +18,15 @@ sc = SparkContext()
 partition = 4
 
 #resource file name
-k=['house1','house2','house3','house4']
-
+k=['house_2_1','house_2_2','house_2_3']
+listi = [0,180,360]
 
 # loop over the number of segments
-numSegments = 500
+numSegments = 250
 
 
 #원본 이미지 메타데이터 얻기위한 전처리 
-image = Image.open("/home/wjdrmf314/MR-SLIC_NEW/resource/house.jpg")
+image = Image.open( '/home/wjdrmf314/MR_SLIC_NEW/resource/house.jpg')
 image = img_as_float(image)
 is_2d = False
 if image.ndim == 2:
@@ -65,6 +65,11 @@ if True and (convert2lab or convert2lab is None):
 
 depth, height, width = image.shape[:3]
 
+
+
+
+
+
 def Map(k):
     #time check
     start_time = time.time()
@@ -82,7 +87,8 @@ def Map(k):
     
     
     finish_time = time.time()
-    return segments, distances, start_time, finish_time, k
+    #k 로 1,2,3 숫자 받는다.
+    return segments, distances, start_time, finish_time, k[-1]
 
 #times, segments, distances 를 리턴받는다.
 stime = time.time()
@@ -96,7 +102,16 @@ ftime = time.time()
 dimension = [depth,height,width]
 dimension = np.array(dimension)
 
-_slic_cythonM()
+#segments, distances 리스트 만들기
+seglist = []
+distlist = []
+indlist = []
+for i in datas:
+    seglist += [i[0]]
+    distlist += [i[1]]
+    indlist += [i[4]]
+
+result = _slic_cythonM(distlist,seglist,indlist,dimension,listi)
 
 #cython 파일을 실행한다.
 
