@@ -10,6 +10,12 @@ cimport numpy as cnp
 
 from ..util import regular_grid
 
+cdef class Data:
+    cdef double[:, :, ::1] distance
+    cdef Py_ssize_t[:,:,::1] nearest_segments
+    def __init__(self, d, n):
+        self.distance = d
+        self.nearest_segments = n
 
 def _slic_cythonM(list distancep, list nearest_segmentsp, Py_ssize_t[::1] index, long[::1] dimension, Py_ssize_t[::1] listi):
     cdef Py_ssize_t depth, height, width
