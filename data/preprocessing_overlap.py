@@ -39,8 +39,8 @@ for split in splits:
             if remain is not 0:
                 split_list[0] = split_list[0]+1
                 remain -=1
-        
-        for i in range(2,split):
+        print(split_list)
+        for i in range(1,split):
             index=0
             index_start = 0
             
@@ -50,15 +50,16 @@ for split in splits:
                 for k in range(i):
                     index_end += split_list[index+k]
                 area = (0,index_start,size[0],index_end+index_start)
-                #print(area)
-                cropped_img = img.crop(area)
-                cropped_img.save("C:/Users/Gangmin/Desktop/SLIC/논문작업/sourcecode/overlap_image/"+str(i)+"/"+img_name[:-4]+"_"+str(index)+".jpg")
+                
+                
+                #cropped_img = img.crop(area)
+                #cropped_img.save("C:/Users/Gangmin/Desktop/SLIC/논문작업/sourcecode/overlap_image/"+str(i)+"/"+img_name[:-4]+"_"+str(index)+".jpg")
                 
                 
                 index_start += split_list[index]
                 index+=1
-            
-            
+        break
+    break
         
     
     
