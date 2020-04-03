@@ -33,10 +33,11 @@ def _slic_cythonM(double[:,::1] distance, Py_ssize_t[:,::1] nearest_segments, Py
             
     #새로운 코드
     with nogil:
+        temp = 0   
         for i in range(0,n_node):
             z_min = 0
             y_min = index[0][i]
-            temp = 0    
+             
             
             for z in range(z_min,z_min+1):
                 for y in range(y_min,y_min+index[1][i]):
