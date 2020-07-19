@@ -43,6 +43,7 @@ for overlap in overlaps:
                 remain -=1
         index_start = 0
         
+        #print(split_list)
         
         for i in range(0,split):
             extension = int(split_list[i]*percent/100)
@@ -51,25 +52,26 @@ for overlap in overlaps:
             for k in range(0,i+1):
                 index_end += split_list[k]
             area = (0,max(0,index_start-extension),size[0],min(index_end+extension,size[1]))
-            
+            print(area)
             #print(img_name)
             #print(area)
-            cropped_img = img.crop(area)
-            cropped_img.save("C:/Users/Gangmin/Desktop/SLIC/논문작업/sourcecode/overlap_image/"+str(overlap)+"/"+img_name[:-4]+'_'+str(i)+".jpg")
+            #cropped_img = img.crop(area)
+            #cropped_img.save("C:/Users/Gangmin/Desktop/SLIC/논문작업/sourcecode/overlap_image/"+str(overlap)+"/"+img_name[:-4]+'_'+str(i)+".jpg")
             index_start += split_list[i]
         
         
         
+        break
+    break
     
     
-    
-    '''
-    index = 0
-    final_list = []
-    for i in range(split):
-        final_list.append(index)
-        index += split_list[i]
-    area = ()
-    '''
+'''
+index = 0
+final_list = []
+for i in range(split):
+    final_list.append(index)
+    index += split_list[i]
+area = ()
+'''
 
     
